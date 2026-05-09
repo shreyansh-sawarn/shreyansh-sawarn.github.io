@@ -5,13 +5,13 @@ body, html {
     color: #444452;
     line-height: 1.6;
     scroll-behavior: smooth;
-    font-family: 'Inter', sans-serif; /* Cleaner body font */
+    font-family: 'Share Tech Mono', monospace;
     transition: background-color 0.4s ease, color 0.4s ease; /* Smooth dark mode */
 }
 
 body.night, html.night {
-    background-color: #0f1115; /* Deeper dark */
-    color: #e0e0e6;
+    background-color: #131417; /* Reverted to original */
+    color: #afafbf; /* Reverted to original */
     scroll-behavior: smooth;
 }
 
@@ -32,7 +32,7 @@ body.night, html.night {
 
 
 h1, h2, h3, .section_title, .myname {
-    font-family: 'Share Tech Mono', monospace; /* Keep tech vibe for headers */
+    font-family: 'Share Tech Mono', monospace; 
 }
 
 h1 {
@@ -194,6 +194,7 @@ body.night .switch-wrapper .moon, html.night .switch-wrapper .moon {
       display: inline-block;
       background: linear-gradient(135deg, #007bff 0%, #00d4ff 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 700;
       animation: .8s shake infinite alternate;
@@ -423,19 +424,14 @@ body .section, html .section {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding: 100px 170px;
-    margin: 80px auto; /* Increased margin */
+    padding: 80px 170px;
+    margin: 0 auto;
     max-width: 1200px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px); /* Slightly stronger blur */
-    border: 1px solid rgba(0, 123, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 }
 
 body.night .section, html.night .section {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: transparent;
+    border: none;
 }
 
 body .section_title, html .section_title {
@@ -519,8 +515,14 @@ section .skills{
     justify-content: space-between;
 }
 
- a.experience .job .job_company {
-    font-weight: 500;
+.experience .job .job_company {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #444452;
+}
+
+body.night .experience .job .job_company {
+    color: #e7e7e7;
 }
 
 .experience .job_time {
