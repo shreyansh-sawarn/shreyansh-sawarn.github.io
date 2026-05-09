@@ -1,65 +1,71 @@
 body, html {
-                margin: 0;
-                padding: 0;
-                background-color: #fff;
-                color: #444452;
-                /*font-family: Apercu,Source Sans Pro,Helvetica,Arial,sans-serif;*/
-                line-height: 1.5;
-                scroll-behavior: smooth;
-                font-family: 'Share Tech Mono', monospace;
-            }
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #444452;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif; /* Cleaner body font */
+    transition: background-color 0.4s ease, color 0.4s ease; /* Smooth dark mode */
+}
 
 body.night, html.night {
-                            background-color: #131417;
-                            color: #afafbf;
-                            scroll-behavior: smooth;
-                        }
+    background-color: #0f1115; /* Deeper dark */
+    color: #e0e0e6;
+    scroll-behavior: smooth;
+}
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+}
+
+
+h1, h2, h3, .section_title, .myname {
+    font-family: 'Share Tech Mono', monospace; /* Keep tech vibe for headers */
+}
 
 h1 {
     display: block;
-    font-size: 2em;
-    -webkit-margin-before: 0.67em;
-    -webkit-margin-after: 0.67em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    font-size: 2.5em;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 h2 {
     display: block;
-    font-size: 1.2em;
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    font-size: 1.5em;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 h3 {
     display: block;
-    font-size: 1.17em;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+    font-size: 1.2em;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 body a, html a {
     text-decoration: none;
-    font-weight: 900;
-    color: #36363c;
-    transition: all .25s ease-in-out;
-    font-family: Trebuchet MS;
-}
-
-body p, html p {
-    font-weight: 200;
+    font-weight: 700;
+    color: #007bff;
+    transition: all .3s ease;
 }
 
 body a:hover{
-    text-decoration: underline blue;
+    color: #00d4ff;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
 }
 
 body .emoji, html .emoji {
@@ -183,10 +189,13 @@ body.night .switch-wrapper .moon, html.night .switch-wrapper .moon {
 
 .myname {
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-decoration: none;
       display: inline-block;
-      /*background-image: linear-gradient(to right, #30CFD0 0%, #330867 100%);*/
+      background: linear-gradient(135deg, #007bff 0%, #00d4ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
       animation: .8s shake infinite alternate;
 }
 
@@ -250,8 +259,8 @@ body.night .switch-wrapper .moon, html.night .switch-wrapper .moon {
 
 
 .intro {
-        padding: 80px 100px;
-        height: 75vh;
+        padding: 120px 100px;
+        height: auto;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -259,10 +268,12 @@ body.night .switch-wrapper .moon, html.night .switch-wrapper .moon {
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        -ms-flex-pack: distribute;
-        justify-content: space-around;
+        justify-content: flex-start;
+        gap: 40px;
         max-width: 1440px;
         margin: 0 auto;
+        position: relative;
+        z-index: 10;
 }   
     
 
@@ -315,8 +326,14 @@ body.night .switch-wrapper .moon, html.night .switch-wrapper .moon {
 }
 
 .intro_contact {
-    font-size: 1.25rem;
-    font-weight: 100;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 40px;
+    color: #444452;
+}
+
+body.night .intro_contact {
+    color: #e0e0e6;
 }
 
 .intro_contact .emoji.pointer {
@@ -328,18 +345,19 @@ body.night .switch-wrapper .moon, html.night .switch-wrapper .moon {
 }
 
 .intro_contact .highlight-link {
-    font-weight: 400;
+    font-weight: 700; /* Bold email */
     text-decoration: none;
     display: inline-block;
     padding: 2px 3px;
-    transition: all .2s ease-in-out;
-    text-decoration: none;
+    transition: all .3s ease;
     box-shadow: inset 0 -3px 0 #007bff;
+    color: #007bff; /* Explicit color */
 }
 
 .intro_contact .highlight-link:hover {
     box-shadow: inset 0 -33px 0 0 #007bff;
-    color: #fff;
+    color: #fff !important;
+    border-radius: 4px;
 }
 
 section {
@@ -406,6 +424,18 @@ body .section, html .section {
     -ms-flex-pack: center;
     justify-content: center;
     padding: 100px 170px;
+    margin: 80px auto; /* Increased margin */
+    max-width: 1200px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px); /* Slightly stronger blur */
+    border: 1px solid rgba(0, 123, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+body.night .section, html.night .section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 body .section_title, html .section_title {
@@ -642,6 +672,7 @@ body ul, html ul {
     font-weight: 400;
     margin: 0 15px;
     outline: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .footer_links a .text {
@@ -651,7 +682,8 @@ body ul, html ul {
 }
 
 .footer_links a:hover {
-    text-decoration: underline;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.6));
 }
 
 .footer_links img {
