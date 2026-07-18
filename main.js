@@ -1,57 +1,161 @@
+/* ============================================================
+   cyberpunk × sakura — vanilla JS, no dependencies
+   ============================================================ */
+(function () {
+	'use strict';
 
-// On Click hand emoji will take you to the top of the page
-document.getElementById('top-button').addEventListener('click',function(){
-    window.scrollTo(0,0);
-});
+	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-$(window).scroll(function(){
-  var threshold = 208; // number of pixels before bottom of page that you want to start fading
-  var op = (($(document).height() - $(window).height()) - $(window).scrollTop()) / threshold;
-  if( op <= 13 ){
-    $("#top-button").show();
-  } else {
-    $("#top-button").hide();
-  }
-});
+	/* ---------- typewriter (hero roles) ---------- */
+	var roles = [
+		'DevOps Engineer',
+		'Azure • CI/CD • IaC',
+		'SRE & Platform Ops',
+		'Terraform • Kubernetes'
+	];
+	var tw = document.getElementById('typewriter');
 
+	if (tw) {
+		if (reducedMotion) {
+			tw.textContent = roles[0];
+		} else {
+			var roleIdx = 0, charIdx = 0, deleting = false;
 
+			(function type() {
+				var current = roles[roleIdx];
 
+				if (deleting) {
+					charIdx--;
+				} else {
+					charIdx++;
+				}
+				tw.textContent = current.slice(0, charIdx);
 
-//Toggle between DAy and Night Mode
-$('#switch1').on('click', function(){
-  $('body').toggleClass('night')
-})
+				var delay = deleting ? 40 : 85;
+				if (!deleting && charIdx === current.length) {
+					delay = 2200;           // pause at full word
+					deleting = true;
+				} else if (deleting && charIdx === 0) {
+					deleting = false;
+					roleIdx = (roleIdx + 1) % roles.length;
+					delay = 400;
+				}
+				setTimeout(type, delay);
+			})();
+		}
+	}
 
+	/* ---------- falling sakura petals ---------- */
+	var canvas = document.getElementById('sakura');
 
-// If user visit after 7 pm in night the body will change the style to night class
+	if (canvas && !reducedMotion) {
+		var ctx = canvas.getContext('2d');
+		var petals = [];
+		var PETAL_COUNT = Math.min(40, Math.floor(window.innerWidth / 32));
 
-$(document).ready(function(){
-  document.body.className = "night";
-  // var date = new Date();
-  // var current_time = date.getHours();
-  // if (current_time > 17 || current_time < 6)
-  //   // If time is after 5PM or before 6AM, apply night theme to ‘body’
-    
-  // else
-  //   // Else use ‘day’ theme
-  //   document.body.className = "";
-});
+		function resize() {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		}
+		resize();
+		window.addEventListener('resize', resize);
 
-$(window).load(function() {
-      $("#top-button").hide();
-});
+		function makePetal(initial) {
+			return {
+				x: Math.random() * canvas.width,
+				y: initial ? Math.random() * canvas.height : -20,
+				size: 5 + Math.random() * 7,
+				speedY: 0.4 + Math.random() * 0.9,
+				speedX: 0.3 + Math.random() * 0.7,
+				sway: Math.random() * Math.PI * 2,
+				swaySpeed: 0.008 + Math.random() * 0.015,
+				rot: Math.random() * Math.PI * 2,
+				rotSpeed: (Math.random() - 0.5) * 0.02,
+				opacity: 0.35 + Math.random() * 0.45,
+				hue: Math.random() < 0.85 ? 'pink' : 'cyan' // a few "digital" petals
+			};
+		}
 
+		for (var i = 0; i < PETAL_COUNT; i++) petals.push(makePetal(true));
 
-// If you hover over the languages I used in project Box it will do fade in animation
-$('.project_used span').on({
-    mouseover: function() {
-        event.preventDefault();
-        $(this).animate({opacity: 0.25});
-    },
-    mouseout: function() {
-        event.preventDefault();
-        $(this).animate({opacity: 1});
-    }
-});
+		function drawPetal(p) {
+			ctx.save();
+			ctx.translate(p.x, p.y);
+			ctx.rotate(p.rot);
+			ctx.globalAlpha = p.opacity;
 
+			if (p.hue === 'cyan') {
+				ctx.fillStyle = 'rgba(34, 230, 247, 0.9)';
+				ctx.shadowColor = 'rgba(34, 230, 247, 0.8)';
+			} else {
+				ctx.fillStyle = 'rgba(255, 150, 190, 0.9)';
+				ctx.shadowColor = 'rgba(255, 122, 178, 0.6)';
+			}
+			ctx.shadowBlur = 6;
 
+			// petal shape: two curves meeting in a point
+			ctx.beginPath();
+			ctx.moveTo(0, -p.size / 2);
+			ctx.bezierCurveTo(p.size * 0.7, -p.size * 0.4, p.size * 0.5, p.size * 0.5, 0, p.size / 2);
+			ctx.bezierCurveTo(-p.size * 0.5, p.size * 0.5, -p.size * 0.7, -p.size * 0.4, 0, -p.size / 2);
+			ctx.fill();
+			ctx.restore();
+		}
+
+		var hidden = false;
+		document.addEventListener('visibilitychange', function () {
+			hidden = document.hidden;
+		});
+
+		(function animate() {
+			requestAnimationFrame(animate);
+			if (hidden) return;
+
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			for (var i = 0; i < petals.length; i++) {
+				var p = petals[i];
+				p.sway += p.swaySpeed;
+				p.x += Math.sin(p.sway) * 0.8 + p.speedX * 0.3;
+				p.y += p.speedY;
+				p.rot += p.rotSpeed;
+
+				if (p.y > canvas.height + 20 || p.x > canvas.width + 30) {
+					petals[i] = makePetal(false);
+				}
+				drawPetal(p);
+			}
+		})();
+	}
+
+	/* ---------- scroll reveal ---------- */
+	var revealEls = document.querySelectorAll('.reveal');
+
+	if ('IntersectionObserver' in window && !reducedMotion) {
+		var observer = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('in');
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.12 });
+
+		revealEls.forEach(function (el) { observer.observe(el); });
+	} else {
+		revealEls.forEach(function (el) { el.classList.add('in'); });
+	}
+
+	/* ---------- back to top ---------- */
+	var topBtn = document.getElementById('top-button');
+
+	if (topBtn) {
+		window.addEventListener('scroll', function () {
+			topBtn.classList.toggle('visible', window.scrollY > 500);
+		}, { passive: true });
+
+		topBtn.addEventListener('click', function () {
+			window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+		});
+	}
+})();
