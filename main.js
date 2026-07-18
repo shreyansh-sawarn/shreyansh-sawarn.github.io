@@ -6,6 +6,30 @@
 
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+	/* ---------- theme toggle (dark by default) ---------- */
+	var themeBtn = document.getElementById('theme-toggle');
+
+	function applyTheme(light) {
+		document.body.classList.toggle('light', light);
+		if (themeBtn) {
+			themeBtn.setAttribute('aria-checked', String(light));
+			themeBtn.title = light ? 'Switch to dark mode' : 'Switch to light mode';
+		}
+	}
+
+	// Dark by default on first visit; remembers the visitor's choice after that
+	var savedTheme = null;
+	try { savedTheme = localStorage.getItem('theme'); } catch (e) { /* private mode */ }
+	applyTheme(savedTheme === 'light');
+
+	if (themeBtn) {
+		themeBtn.addEventListener('click', function () {
+			var light = !document.body.classList.contains('light');
+			applyTheme(light);
+			try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) { /* ignore */ }
+		});
+	}
+
 	/* ---------- typewriter (hero roles) ---------- */
 	var roles = [
 		'DevOps Engineer',
@@ -84,14 +108,15 @@
 			ctx.rotate(p.rot);
 			ctx.globalAlpha = p.opacity;
 
+			var light = document.body.classList.contains('light');
 			if (p.hue === 'cyan') {
-				ctx.fillStyle = 'rgba(34, 230, 247, 0.9)';
-				ctx.shadowColor = 'rgba(34, 230, 247, 0.8)';
+				ctx.fillStyle = light ? 'rgba(14, 124, 150, 0.75)' : 'rgba(34, 230, 247, 0.9)';
+				ctx.shadowColor = light ? 'rgba(14, 124, 150, 0.4)' : 'rgba(34, 230, 247, 0.8)';
 			} else {
-				ctx.fillStyle = 'rgba(255, 150, 190, 0.9)';
-				ctx.shadowColor = 'rgba(255, 122, 178, 0.6)';
+				ctx.fillStyle = light ? 'rgba(214, 51, 132, 0.65)' : 'rgba(255, 150, 190, 0.9)';
+				ctx.shadowColor = light ? 'rgba(214, 51, 132, 0.35)' : 'rgba(255, 122, 178, 0.6)';
 			}
-			ctx.shadowBlur = 6;
+			ctx.shadowBlur = light ? 4 : 6;
 
 			// petal shape: two curves meeting in a point
 			ctx.beginPath();
