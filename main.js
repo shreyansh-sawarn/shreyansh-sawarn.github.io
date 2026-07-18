@@ -59,6 +59,9 @@
 				if (!deleting && charIdx === current.length) {
 					delay = 2200;           // pause at full word
 					deleting = true;
+					// glitch-zap flourish on the completed word
+					tw.classList.add('zap');
+					setTimeout(function () { tw.classList.remove('zap'); }, 400);
 				} else if (deleting && charIdx === 0) {
 					deleting = false;
 					roleIdx = (roleIdx + 1) % roles.length;
@@ -159,16 +162,36 @@
 	if ('IntersectionObserver' in window && !reducedMotion) {
 		var observer = new IntersectionObserver(function (entries) {
 			entries.forEach(function (entry) {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('in');
-					observer.unobserve(entry.target);
-				}
+				// toggle so reveal animations replay on every scroll in/out
+				entry.target.classList.toggle('in', entry.isIntersecting);
 			});
 		}, { threshold: 0.12 });
 
 		revealEls.forEach(function (el) { observer.observe(el); });
 	} else {
 		revealEls.forEach(function (el) { el.classList.add('in'); });
+	}
+
+	/* ---------- scroll parallax on the sakura branches ---------- */
+	var trees = document.querySelectorAll('.sakura-tree');
+
+	if (trees.length && !reducedMotion) {
+		var ticking = false;
+		window.addEventListener('scroll', function () {
+			if (ticking) return;
+			ticking = true;
+			requestAnimationFrame(function () {
+				// branches drift up slightly slower than the page, and fade out
+				var y = window.scrollY;
+				var shift = y * -0.18;
+				var fade = Math.max(0, 1 - y / (window.innerHeight * 1.1));
+				trees.forEach(function (el) {
+					el.style.translate = '0 ' + shift.toFixed(1) + 'px';
+					el.style.opacity = fade.toFixed(2);
+				});
+				ticking = false;
+			});
+		}, { passive: true });
 	}
 
 	/* ---------- back to top ---------- */

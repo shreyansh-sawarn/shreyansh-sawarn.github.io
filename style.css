@@ -177,6 +177,113 @@ body {
 	padding: 96px 0 64px;
 }
 
+/* ---------- cherry blossom branches (top-right frame) ---------- */
+.sakura-tree {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: min(58vw, 900px);
+	height: auto;
+	z-index: 1;
+	pointer-events: none;
+	transform-origin: 100% 0%;
+	/* sway uses the standalone `rotate` property so JS can drive
+	   parallax via `translate` without the two fighting */
+	animation: tree-enter 1.4s cubic-bezier(0.22, 1, 0.36, 1) backwards,
+		tree-sway 11s ease-in-out 1.4s infinite;
+	will-change: translate;
+}
+
+@keyframes tree-enter {
+	from {
+		opacity: 0;
+		translate: 40px -30px;
+	}
+
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+
+.sakura-tree--dark {
+	filter: drop-shadow(0 0 22px rgba(255, 122, 178, 0.18));
+}
+
+.sakura-tree--light {
+	display: none;
+	filter: drop-shadow(0 6px 18px rgba(120, 60, 90, 0.12));
+}
+
+body.light .sakura-tree--dark {
+	display: none;
+}
+
+body.light .sakura-tree--light {
+	display: block;
+}
+
+@keyframes tree-sway {
+
+	0%, 100% {
+		rotate: 0deg;
+	}
+
+	50% {
+		rotate: 0.5deg;
+	}
+}
+
+@media (max-width: 900px) {
+	.sakura-tree {
+		width: 420px;
+		right: -120px;
+		opacity: 0.3;
+	}
+}
+
+/* staggered entrance */
+.hero_kicker,
+.hero_name,
+.hero_roles,
+.hero_bio,
+.hero_actions {
+	opacity: 0;
+	animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero_kicker {
+	animation-delay: 0.15s;
+}
+
+.hero_name {
+	animation-delay: 0.3s;
+}
+
+.hero_roles {
+	animation-delay: 0.5s;
+}
+
+.hero_bio {
+	animation-delay: 0.65s;
+}
+
+.hero_actions {
+	animation-delay: 0.8s;
+}
+
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(26px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
 .hero_kicker {
 	font-family: var(--mono);
 	color: var(--neon);
@@ -257,6 +364,12 @@ body {
 	}
 }
 
+/* hovering the name makes the glitch go wild */
+.glitch:hover::before,
+.glitch:hover::after {
+	animation-duration: 0.9s;
+}
+
 @keyframes glitch-b {
 
 	0%, 7%, 100% {
@@ -295,6 +408,32 @@ body {
 	text-shadow: var(--glow-cyan);
 	margin-bottom: 28px;
 	min-height: 1.6em;
+}
+
+#typewriter {
+	display: inline-block;
+}
+
+/* glitch zap when a role finishes typing */
+#typewriter.zap {
+	animation: zap 0.32s steps(2);
+}
+
+@keyframes zap {
+	0% {
+		opacity: 0.25;
+		transform: translateX(-3px) skewX(-10deg);
+		text-shadow: 3px 0 var(--sakura), -3px 0 var(--neon);
+	}
+
+	50% {
+		opacity: 1;
+		transform: translateX(2px);
+	}
+
+	100% {
+		transform: none;
+	}
 }
 
 .hero_prompt {
@@ -337,8 +476,27 @@ body {
 	padding: 13px 26px;
 	border-radius: 4px;
 	position: relative;
+	overflow: hidden;
 	transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
 	clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+/* light sweep on hover */
+.btn::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -80%;
+	width: 45%;
+	height: 100%;
+	background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+	transform: skewX(-20deg);
+	transition: left 0.45s ease;
+	pointer-events: none;
+}
+
+.btn:hover::after {
+	left: 135%;
 }
 
 .btn--primary {
@@ -441,6 +599,27 @@ body {
 	margin-bottom: 40px;
 	text-transform: uppercase;
 	letter-spacing: 0.12em;
+	position: relative;
+	padding-bottom: 14px;
+}
+
+/* underline sweeps in when the section scrolls into view */
+.section_title::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 140px;
+	height: 2px;
+	background: linear-gradient(90deg, var(--sakura), var(--neon));
+	box-shadow: 0 0 10px rgba(255, 122, 178, 0.5);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+
+.reveal.in .section_title::after {
+	transform: scaleX(1);
 }
 
 .section_jp {
@@ -529,6 +708,27 @@ body {
 	background: var(--sakura);
 	color: #fff;
 	box-shadow: 0 0 12px rgba(255, 122, 178, 0.35);
+	translate: 0 -3px;
+}
+
+/* tags cascade in as their section reveals */
+.reveal.in .taglist li {
+	animation: tag-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal.in .taglist li:nth-child(2) { animation-delay: 0.06s; }
+.reveal.in .taglist li:nth-child(3) { animation-delay: 0.12s; }
+.reveal.in .taglist li:nth-child(4) { animation-delay: 0.18s; }
+.reveal.in .taglist li:nth-child(5) { animation-delay: 0.24s; }
+.reveal.in .taglist li:nth-child(6) { animation-delay: 0.3s; }
+.reveal.in .taglist li:nth-child(7) { animation-delay: 0.36s; }
+.reveal.in .taglist li:nth-child(8) { animation-delay: 0.42s; }
+
+@keyframes tag-pop {
+	from {
+		opacity: 0;
+		translate: 0 14px;
+	}
 }
 
 /* ---------- experience ---------- */
@@ -592,6 +792,12 @@ body {
 	position: relative;
 	margin-bottom: 14px;
 	font-size: 0.97rem;
+	transition: translate 0.25s ease, color 0.25s ease;
+}
+
+.job_points li:hover {
+	translate: 6px 0;
+	color: var(--text);
 }
 
 .job_points li::before {
