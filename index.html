@@ -26,7 +26,32 @@
 	<meta name="twitter:image" content="https://shreyansh-sawarn.github.io/images/og-image.png">
 
 	<link rel="canonical" href="https://shreyansh-sawarn.github.io/">
+	<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 	<link rel="icon" type="image/png" href="images/male-technologist.png">
+
+	<!-- Structured data for search engines -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Shreyansh Sawarn",
+		"jobTitle": "DevOps Engineer",
+		"url": "https://shreyansh-sawarn.github.io/",
+		"email": "mailto:shreyanshsawarn88@gmail.com",
+		"image": "https://shreyansh-sawarn.github.io/images/og-image.png",
+		"sameAs": [
+			"https://github.com/shreyansh-sawarn",
+			"https://www.linkedin.com/in/shreyanshsawarn/",
+			"https://twitter.com/SawarnShreyansh"
+		],
+		"knowsAbout": ["DevOps", "Microsoft Azure", "CI/CD", "Terraform", "Kubernetes", "Site Reliability Engineering", "Docker"],
+		"worksFor": {
+			"@type": "Organization",
+			"name": "Tata Consultancy Services"
+		}
+	}
+	</script>
+	<link rel="preload" as="image" href="images/sakura-dark.webp" type="image/webp">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
@@ -36,6 +61,7 @@
 </head>
 
 <body>
+	<a class="skip-link" href="#background">Skip to content</a>
 	<!-- Falling sakura petals -->
 	<canvas id="sakura" aria-hidden="true"></canvas>
 	<!-- Scanline / grid overlays -->
@@ -44,8 +70,9 @@
 	<!-- Cherry blossom branches draping from the top-right corner (sumi-e artwork).
 	     The wrapper clips the off-edge overhang so it can't widen the mobile layout viewport. -->
 	<div class="tree-wrap" aria-hidden="true">
-		<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp" alt="">
-		<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp" alt="" loading="lazy">
+		<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp" alt="" width="1536" height="1024">
+		<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp" alt="" width="1536" height="1024"
+			loading="lazy">
 	</div>
 
 	<div id="site">
@@ -77,6 +104,11 @@
 				</a>
 			</div>
 
+			<p class="hero_avail">
+				<span class="avail-dot" aria-hidden="true"></span>
+				open to DevOps &amp; SRE opportunities
+			</p>
+
 			<div class="hero_scroll" aria-hidden="true">
 				<span class="jp-small">下</span>
 				<span class="hero_scroll_line"></span>
@@ -98,6 +130,25 @@
 					using Terraform and Terragrunt, custom Docker containerization and Kubernetes-based deployments on
 					AKS, and SRE-aligned reliability and vulnerability remediation initiatives.
 				</p>
+
+				<div class="stats" aria-label="Key impact metrics">
+					<div class="stat">
+						<span class="stat_value" data-count="50" data-prefix="~" data-suffix="%">~50%</span>
+						<span class="stat_label">less unplanned downtime</span>
+					</div>
+					<div class="stat">
+						<span class="stat_value" data-count="98.55" data-decimals="2" data-suffix="%">98.55%</span>
+						<span class="stat_label">SLI — up from 97.2%</span>
+					</div>
+					<div class="stat">
+						<span class="stat_value" data-count="100" data-suffix="%">100%</span>
+						<span class="stat_label">on-time delivery</span>
+					</div>
+					<div class="stat">
+						<span class="stat_value" data-count="4.5" data-decimals="1" data-suffix="+">4.5+</span>
+						<span class="stat_label">years in production</span>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -221,6 +272,46 @@
 				</article>
 			</div>
 		</section>
+
+		<!-- ============ CERTIFICATIONS — scaffold, currently disabled ============
+		     To activate: 1) uncomment this section
+		                   2) fill in real cert names, years, credential URLs
+		                   3) renumber: this becomes 04, Projects' section_num becomes 05
+		     CSS (.certs_grid / .cert_card) is already live in style.css.
+
+		<section class="section reveal" id="certifications">
+			<h2 class="section_title"><span class="section_jp">資格</span>Certifications<span class="section_num">04</span></h2>
+			<div class="section_content">
+				<div class="certs_grid">
+
+					<div class="cert_card">
+						<span class="cert_badge">AZ-400</span>
+						<div>
+							<p class="cert_name">Microsoft Certified: DevOps Engineer Expert</p>
+							<p class="cert_meta">Microsoft · YEAR · <a href="CREDENTIAL_URL" target="_blank" rel="noopener">verify</a></p>
+						</div>
+					</div>
+
+					<div class="cert_card">
+						<span class="cert_badge">AZ-104</span>
+						<div>
+							<p class="cert_name">Microsoft Certified: Azure Administrator Associate</p>
+							<p class="cert_meta">Microsoft · YEAR · <a href="CREDENTIAL_URL" target="_blank" rel="noopener">verify</a></p>
+						</div>
+					</div>
+
+					<div class="cert_card">
+						<span class="cert_badge">HCTA</span>
+						<div>
+							<p class="cert_name">HashiCorp Certified: Terraform Associate</p>
+							<p class="cert_meta">HashiCorp · YEAR · <a href="CREDENTIAL_URL" target="_blank" rel="noopener">verify</a></p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		============ END CERTIFICATIONS SCAFFOLD ============ -->
 
 		<!-- ============ PROJECTS ============ -->
 		<section class="section reveal" id="projects">

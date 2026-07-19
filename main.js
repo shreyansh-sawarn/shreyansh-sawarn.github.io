@@ -6,6 +6,16 @@
 
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+	/* ---------- favicon cycles on each visit: blossom → S → terminal ---------- */
+	(function () {
+		var icons = ['images/favicon.svg', 'images/favicon-mono.svg', 'images/favicon-term.svg'];
+		var idx = 0;
+		try { idx = (parseInt(localStorage.getItem('favi'), 10) || 0) % icons.length; } catch (e) { /* ignore */ }
+		var link = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+		if (link && idx > 0) link.href = icons[idx];
+		try { localStorage.setItem('favi', String((idx + 1) % icons.length)); } catch (e) { /* ignore */ }
+	})();
+
 	/* ---------- theme toggle (dark by default) ---------- */
 	var themeBtn = document.getElementById('theme-toggle');
 
@@ -111,6 +121,24 @@
 		resize();
 		window.addEventListener('resize', resize);
 
+		/* hanami easter egg: temporary full-screen petal storm */
+		var storming = false;
+		window.__hanami = function () {
+			if (storming) return;
+			storming = true;
+			for (var i = 0; i < 130; i++) {
+				var p = makePetal(false);
+				p.y = -Math.random() * canvas.height;      // stagger entry from above
+				p.speedY *= 2 + Math.random() * 1.5;       // fall faster
+				p.size *= 1.15;
+				petals.push(p);
+			}
+			setTimeout(function () {
+				petals.length = targetCount();             // storm subsides
+				storming = false;
+			}, 8000);
+		};
+
 		function drawPetal(p) {
 			ctx.save();
 			ctx.translate(p.x, p.y);
@@ -162,6 +190,29 @@
 		})();
 	}
 
+	/* ---------- animated stat counters ---------- */
+	function runCounters(scope) {
+		scope.querySelectorAll('.stat_value').forEach(function (el) {
+			var target = parseFloat(el.getAttribute('data-count'));
+			var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+			var pre = el.getAttribute('data-prefix') || '';
+			var suf = el.getAttribute('data-suffix') || '';
+			if (reducedMotion || isNaN(target)) {
+				el.textContent = pre + target.toFixed(dec) + suf;
+				return;
+			}
+			var t0 = null;
+			function step(ts) {
+				if (!t0) t0 = ts;
+				var p = Math.min((ts - t0) / 1400, 1);
+				var e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+				el.textContent = pre + (target * e).toFixed(dec) + suf;
+				if (p < 1) requestAnimationFrame(step);
+			}
+			requestAnimationFrame(step);
+		});
+	}
+
 	/* ---------- scroll reveal ---------- */
 	var revealEls = document.querySelectorAll('.reveal');
 
@@ -175,6 +226,10 @@
 				if (pl) {
 					pl.classList.toggle('armed', entry.isIntersecting);
 					if (!entry.isIntersecting && window.__resetPipeline) window.__resetPipeline();
+				}
+				// stat counters count up on each reveal
+				if (entry.isIntersecting && entry.target.querySelector('.stats')) {
+					runCounters(entry.target);
 				}
 			});
 		}, { threshold: 0.12 });
@@ -419,6 +474,15 @@
 			theme: function () {
 				document.getElementById('theme-toggle').click();
 				print('theme toggled.');
+			},
+			hanami: function () {
+				// 花見 — not listed in help; a secret for the curious
+				if (window.__hanami) {
+					print('<span class="t-pink">花見 — enjoy the blossoms.</span>');
+					window.__hanami();
+				} else {
+					print('<span class="t-dim">the blossoms are resting (reduced motion is on).</span>');
+				}
 			},
 			deploy: function () {
 				var lines = [
