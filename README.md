@@ -13,11 +13,14 @@ files and zero dependencies** — no framework, no build step, instant loads.
   separately per theme)
 - Falling sakura petals and katakana digital rain on `<canvas>`
 - Typewriter role line with glitch effects
-- Animated CI/CD pipeline (commit → build → test → deploy)
+- Interactive CI/CD pipeline — press **▶ deploy** and watch it ship
+- Animated impact-metric counters
 - Live GitHub repo stats via the public API
 - Terminal easter egg — press `` ` `` or the `>_` button and type `help`
-  (supports ↑/↓ history and Tab completion)
-- Responsive, respects `prefers-reduced-motion`, Open Graph social previews
+  (↑/↓ history, Tab completion, and at least one hidden command)
+- Themed 404 page, cycling favicons, JSON-LD, `llms.txt` for AI crawlers
+- Responsive, keyboard-accessible, respects `prefers-reduced-motion`,
+  Open Graph social previews
 
 ## Stack
 

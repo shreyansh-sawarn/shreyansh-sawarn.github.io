@@ -51,12 +51,19 @@
 		}
 	}
 	</script>
-	<link rel="preload" as="image" href="images/sakura-dark.webp" type="image/webp">
+	<link rel="preload" as="image" type="image/webp"
+		imagesrcset="images/sakura-dark-800.webp 800w, images/sakura-dark-1200.webp 1200w, images/sakura-dark.webp 1536w"
+		imagesizes="(max-width: 900px) 580px, min(58vw, 900px)">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@600&display=swap"
-		rel="stylesheet">
+	<!-- fonts load async (display=swap shows fallback text immediately) -->
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New&family=Noto+Serif+JP:wght@600&display=swap"
+		media="print" onload="this.media='all'">
+	<noscript>
+		<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New&family=Noto+Serif+JP:wght@600&display=swap">
+	</noscript>
 	<link rel="stylesheet" href="style.css">
 </head>
 
@@ -70,9 +77,12 @@
 	<!-- Cherry blossom branches draping from the top-right corner (sumi-e artwork).
 	     The wrapper clips the off-edge overhang so it can't widen the mobile layout viewport. -->
 	<div class="tree-wrap" aria-hidden="true">
-		<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp" alt="" width="1536" height="1024">
-		<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp" alt="" width="1536" height="1024"
-			loading="lazy">
+		<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp"
+			srcset="images/sakura-dark-800.webp 800w, images/sakura-dark-1200.webp 1200w, images/sakura-dark.webp 1536w"
+			sizes="(max-width: 900px) 580px, min(58vw, 900px)" alt="" width="1536" height="1024">
+		<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp"
+			srcset="images/sakura-light-800.webp 800w, images/sakura-light-1200.webp 1200w, images/sakura-light.webp 1536w"
+			sizes="(max-width: 900px) 580px, min(58vw, 900px)" alt="" width="1536" height="1024" loading="lazy">
 	</div>
 
 	<div id="site">
