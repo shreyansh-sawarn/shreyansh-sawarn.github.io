@@ -160,6 +160,29 @@
 		<section class="section reveal" id="experience">
 			<h2 class="section_title"><span class="section_jp">経験</span>Experience<span class="section_num">03</span></h2>
 			<div class="section_content">
+				<!-- CI/CD pipeline: lights up on reveal -->
+				<div class="pipeline" aria-hidden="true">
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">commit</span>
+					</div>
+					<span class="pipe"></span>
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">build</span>
+					</div>
+					<span class="pipe"></span>
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">test</span>
+					</div>
+					<span class="pipe"></span>
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">deploy</span>
+					</div>
+				</div>
+
 				<article class="job">
 					<div class="job_header">
 						<div>
@@ -278,9 +301,12 @@
 				</a>
 			</div>
 			<p class="footer_copy">Designed &amp; developed by <span class="highlight">Shreyansh Sawarn</span></p>
-			<p class="footer_sub">桜 × サイバー — Tokyo never sleeps.</p>
+			<p class="footer_sub">桜 × サイバー — build, break, deploy, repeat.</p>
 		</footer>
 	</div>
+
+	<!-- katakana digital rain, left edge -->
+	<canvas id="rain" aria-hidden="true"></canvas>
 
 	<button id="theme-toggle" role="switch" aria-checked="false" title="Toggle light/dark"
 		aria-label="Toggle light and dark theme">
@@ -296,6 +322,23 @@
 		</svg>
 		<span class="toggle-knob" aria-hidden="true"></span>
 	</button>
+	<!-- terminal easter egg -->
+	<button id="term-button" title="Open terminal (`)" aria-label="Open terminal">&gt;_</button>
+	<div id="terminal" role="dialog" aria-label="Portfolio terminal" hidden>
+		<div class="term_bar">
+			<span class="term_dot term_dot--r"></span>
+			<span class="term_dot term_dot--y"></span>
+			<span class="term_dot term_dot--g"></span>
+			<span class="term_title">shreyansh@portfolio:~</span>
+			<button class="term_close" id="term-close" aria-label="Close terminal">×</button>
+		</div>
+		<div class="term_out" id="term-out"></div>
+		<div class="term_in">
+			<span class="term_prompt">$</span>
+			<input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+		</div>
+	</div>
+
 	<button id="top-button" title="Back to top" aria-label="Back to top">
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
 			stroke-linejoin="round" aria-hidden="true">

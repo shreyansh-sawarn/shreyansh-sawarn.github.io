@@ -731,6 +731,89 @@ body.light .sakura-tree--light {
 	}
 }
 
+/* ---------- CI/CD pipeline ---------- */
+.pipeline {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-family: var(--mono);
+	margin-bottom: 32px;
+	max-width: 560px;
+}
+
+.stage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 7px;
+}
+
+.stage_dot {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	border: 2px solid var(--neon-dim);
+	background: transparent;
+	position: relative;
+}
+
+.stage_label {
+	font-size: 0.72rem;
+	letter-spacing: 0.1em;
+	color: var(--text-dim);
+	text-transform: lowercase;
+}
+
+.pipe {
+	flex: 1;
+	height: 2px;
+	background: var(--divider);
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 22px;
+}
+
+.pipe::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, var(--sakura), var(--neon));
+	transform: scaleX(0);
+	transform-origin: left;
+}
+
+/* light-up sequence on reveal: dot → pipe → dot → pipe ...
+   (stages are divs counted 1-4, pipes are spans counted 1-3) */
+.reveal.in .stage:nth-of-type(1) .stage_dot { animation: stage-on 0.35s 0.2s both; }
+.reveal.in .pipe:nth-of-type(1)::after      { animation: pipe-fill 0.6s 0.55s both; }
+.reveal.in .stage:nth-of-type(2) .stage_dot { animation: stage-on 0.35s 1.15s both; }
+.reveal.in .pipe:nth-of-type(2)::after      { animation: pipe-fill 0.6s 1.5s both; }
+.reveal.in .stage:nth-of-type(3) .stage_dot { animation: stage-on 0.35s 2.1s both; }
+.reveal.in .pipe:nth-of-type(3)::after      { animation: pipe-fill 0.6s 2.45s both; }
+.reveal.in .stage:nth-of-type(4) .stage_dot { animation: stage-on 0.35s 3.05s both, deploy-pulse 2.2s 3.5s ease-in-out infinite; }
+
+@keyframes stage-on {
+	to {
+		background: var(--sakura);
+		border-color: var(--sakura);
+		box-shadow: 0 0 10px rgba(255, 122, 178, 0.8);
+	}
+}
+
+@keyframes pipe-fill {
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes deploy-pulse {
+	50% {
+		box-shadow: 0 0 18px rgba(34, 230, 247, 0.9);
+		border-color: var(--neon);
+		background: var(--neon);
+	}
+}
+
 /* ---------- experience ---------- */
 .job {
 	background: var(--panel);
@@ -881,6 +964,20 @@ body.light .sakura-tree--light {
 	margin-bottom: 18px;
 }
 
+/* live GitHub stats row (filled by JS) */
+.project_meta {
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	color: var(--neon);
+	margin-bottom: 12px;
+	letter-spacing: 0.04em;
+}
+
+.project_meta .sep {
+	color: var(--text-dim);
+	margin: 0 7px;
+}
+
 .taglist--project {
 	margin-top: auto;
 }
@@ -977,6 +1074,33 @@ body.light .sakura-tree--light {
 }
 
 /* ============================================================
+   DIGITAL RAIN
+   ============================================================ */
+/* katakana digital rain down the left edge */
+#rain {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 150px;
+	height: 100vh;
+	z-index: 1;
+	pointer-events: none;
+	opacity: 0.55;
+	mask-image: linear-gradient(90deg, black 55%, transparent);
+	-webkit-mask-image: linear-gradient(90deg, black 55%, transparent);
+}
+
+body.light #rain {
+	opacity: 0.3;
+}
+
+@media (max-width: 1100px) {
+	#rain {
+		display: none;
+	}
+}
+
+/* ============================================================
    THEME TOGGLE
    ============================================================ */
 #theme-toggle {
@@ -1054,6 +1178,136 @@ body.light .toggle-knob {
 	background: rgba(245, 158, 11, 0.18);
 	border-color: rgba(245, 158, 11, 0.55);
 	box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+/* ============================================================
+   TERMINAL EASTER EGG
+   ============================================================ */
+#term-button {
+	position: fixed;
+	bottom: 90px;
+	right: 28px;
+	z-index: 10;
+	width: 48px;
+	height: 48px;
+	font-family: var(--mono);
+	font-size: 0.95rem;
+	color: var(--sakura);
+	background: var(--panel-strong);
+	border: 1px solid var(--panel-border);
+	border-radius: 4px;
+	cursor: pointer;
+	transition: box-shadow 0.3s ease, transform 0.3s ease;
+	clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+#term-button:hover {
+	box-shadow: var(--glow-pink);
+	transform: translateY(-3px);
+}
+
+#terminal {
+	position: fixed;
+	bottom: 152px;
+	right: 28px;
+	z-index: 30;
+	width: min(480px, calc(100vw - 40px));
+	background: rgba(12, 12, 22, 0.96);
+	border: 1px solid var(--neon-dim);
+	border-radius: 8px;
+	box-shadow: 0 0 30px rgba(34, 230, 247, 0.15), 0 20px 50px rgba(0, 0, 0, 0.5);
+	font-family: var(--mono);
+	font-size: 0.85rem;
+	overflow: hidden;
+	animation: term-open 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.light #terminal {
+	background: rgba(20, 18, 30, 0.97);
+}
+
+@keyframes term-open {
+	from {
+		opacity: 0;
+		translate: 0 20px;
+		scale: 0.97;
+	}
+}
+
+.term_bar {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	padding: 9px 12px;
+	background: rgba(255, 255, 255, 0.04);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.term_dot {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+}
+
+.term_dot--r { background: #ff5f57; }
+.term_dot--y { background: #febc2e; }
+.term_dot--g { background: #28c840; }
+
+.term_title {
+	margin-left: 8px;
+	color: #9a96ad;
+	font-size: 0.75rem;
+}
+
+.term_close {
+	margin-left: auto;
+	background: none;
+	border: none;
+	color: #9a96ad;
+	font-size: 1.1rem;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.term_close:hover {
+	color: #ff5f57;
+}
+
+.term_out {
+	padding: 12px 14px 4px;
+	height: 240px;
+	overflow-y: auto;
+	color: #cfcbdd;
+	line-height: 1.55;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.term_out .t-cmd { color: #22e6f7; }
+.term_out .t-pink { color: #ff7ab2; }
+.term_out .t-dim { color: #77738a; }
+.term_out a { color: #22e6f7; }
+
+.term_in {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 14px 12px;
+}
+
+.term_prompt {
+	color: #ff7ab2;
+}
+
+#term-input {
+	flex: 1;
+	background: none;
+	border: none;
+	outline: none;
+	color: #e8e6f0;
+	font-family: var(--mono);
+	font-size: 0.85rem;
+	caret-color: #22e6f7;
 }
 
 /* ============================================================
