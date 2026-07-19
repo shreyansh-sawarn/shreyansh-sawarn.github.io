@@ -51,6 +51,7 @@
 		}
 	}
 	</script>
+	<link rel="preload" as="image" href="images/sakura-dark.webp" type="image/webp">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
@@ -60,6 +61,7 @@
 </head>
 
 <body>
+	<a class="skip-link" href="#background">Skip to content</a>
 	<!-- Falling sakura petals -->
 	<canvas id="sakura" aria-hidden="true"></canvas>
 	<!-- Scanline / grid overlays -->
@@ -68,8 +70,9 @@
 	<!-- Cherry blossom branches draping from the top-right corner (sumi-e artwork).
 	     The wrapper clips the off-edge overhang so it can't widen the mobile layout viewport. -->
 	<div class="tree-wrap" aria-hidden="true">
-		<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp" alt="">
-		<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp" alt="" loading="lazy">
+		<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp" alt="" width="1536" height="1024">
+		<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp" alt="" width="1536" height="1024"
+			loading="lazy">
 	</div>
 
 	<div id="site">
@@ -100,6 +103,11 @@
 					<span class="status-dot" aria-hidden="true"></span> View Resume
 				</a>
 			</div>
+
+			<p class="hero_avail">
+				<span class="avail-dot" aria-hidden="true"></span>
+				open to DevOps &amp; SRE opportunities
+			</p>
 
 			<div class="hero_scroll" aria-hidden="true">
 				<span class="jp-small">下</span>

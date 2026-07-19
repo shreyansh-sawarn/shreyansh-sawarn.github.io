@@ -1,0 +1,34 @@
+# Shreyansh Sawarn
+
+> DevOps Engineer with 4.5+ years of experience designing, automating, and
+> operating production-grade CI/CD pipelines and cloud infrastructure on
+> Microsoft Azure. Currently at Tata Consultancy Services (TCS), May 2021 to
+> present. Open to DevOps & SRE opportunities.
+
+## Expertise
+
+- Azure DevOps, CI/CD pipeline design (Kong Gateway, frontend/backend platforms)
+- Infrastructure as Code: Terraform, Terragrunt (DRY multi-environment Azure IaaS)
+- Containers: Docker, Kubernetes (AKS)
+- SRE: Azure Application Insights, reliability engineering — reduced unplanned
+  downtime ~50%, improved SLI from 97.2% to 98.55%
+- Security: vulnerability remediation (Qualys, CrowdStrike, Nucleus), CVE
+  analysis, SonarCloud, JFrog Artifactory/Xray
+- Languages/tools: Python, PowerShell, YAML, KQL, MySQL, Linux
+
+## Notable work
+
+- End-to-end Azure DevOps CI/CD for Kong Gateway using decK and RBAC-secured
+  Admin APIs
+- Automated Redis Enterprise operations: mTLS-secured RedisJSON configuration
+  loading, sequential version-aware upgrade framework
+- [tf-azure](https://github.com/shreyansh-sawarn/tf-azure): reusable Terraform
+  modules for Azure infrastructure automation
+
+## Links
+
+- Portfolio: https://shreyansh-sawarn.github.io/
+- GitHub: https://github.com/shreyansh-sawarn
+- LinkedIn: https://www.linkedin.com/in/shreyanshsawarn/
+- Email: shreyanshsawarn88@gmail.com
+- Resume: https://shreyansh-sawarn.github.io/images/Shreyansh_Sawarn_Resume.pdf

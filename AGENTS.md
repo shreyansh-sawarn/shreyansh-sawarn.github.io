@@ -106,3 +106,11 @@ A **Certifications section is scaffolded but commented out** in `index.html`
 - Impact stats strip (`.stats` in Background): counters animate on each
   reveal via `runCounters()`; values live in `data-count` attributes — keep
   them in sync with the Experience bullets and resume.
+- SEO/AI discoverability: `robots.txt` (all crawlers incl. AI bots allowed),
+  `sitemap.xml` (bump `lastmod` on meaningful content changes), `llms.txt`
+  (markdown profile for LLM crawlers — keep in sync with resume/site copy).
+- Availability signal: `.hero_avail` in the hero ("open to DevOps & SRE
+  opportunities", green pulsing dot) and mirrored in `llms.txt`. Update or
+  remove both when Shreyansh's job situation changes.
+- Accessibility: `.skip-link` (first element in body), global
+  `:focus-visible` neon outline. Keep both intact when restructuring.

@@ -1,0 +1,6 @@
+# All crawlers welcome — including AI crawlers
+# (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.)
+User-agent: *
+Allow: /
+
+Sitemap: https://shreyansh-sawarn.github.io/sitemap.xml
