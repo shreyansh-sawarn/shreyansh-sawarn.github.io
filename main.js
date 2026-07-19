@@ -266,7 +266,8 @@
 		var last = 0;
 		(function rainLoop(ts) {
 			requestAnimationFrame(rainLoop);
-			if (rainHidden || ts - last < 55) return; // ~18fps, chunky matrix feel
+			// skip when tab is hidden, when CSS hides the canvas (mobile), or between frames
+			if (rainHidden || rain.clientWidth === 0 || ts - last < 55) return; // ~18fps
 			last = ts;
 
 			// fade previous frame (keeps canvas transparent)
