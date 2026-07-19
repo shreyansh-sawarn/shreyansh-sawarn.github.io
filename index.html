@@ -1,70 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>Shreyansh Sawarn</title>
-	<link rel="icon" type="image/png" href="images/male-technologist.png" hreflang="en-us">
-	<link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shreyansh Sawarn — DevOps Engineer</title>
+	<meta name="description"
+		content="Shreyansh Sawarn — DevOps Engineer with 4.5+ years of experience in Azure, CI/CD, Terraform and Kubernetes.">
 
+	<!-- Open Graph (LinkedIn, WhatsApp, Slack, etc.) -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://shreyansh-sawarn.github.io/">
+	<meta property="og:title" content="Shreyansh Sawarn — DevOps Engineer">
+	<meta property="og:description"
+		content="DevOps Engineer with 4.5+ years of experience in Azure, CI/CD, Terraform and Kubernetes.">
+	<meta property="og:image" content="https://shreyansh-sawarn.github.io/images/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+
+	<!-- Twitter / X -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Shreyansh Sawarn — DevOps Engineer">
+	<meta name="twitter:description"
+		content="DevOps Engineer with 4.5+ years of experience in Azure, CI/CD, Terraform and Kubernetes.">
+	<meta name="twitter:image" content="https://shreyansh-sawarn.github.io/images/og-image.png">
+
+	<link rel="canonical" href="https://shreyansh-sawarn.github.io/">
+	<link rel="icon" type="image/png" href="images/male-technologist.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@600&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
+	<!-- Falling sakura petals -->
+	<canvas id="sakura" aria-hidden="true"></canvas>
+	<!-- Scanline / grid overlays -->
+	<div class="overlay-grid" aria-hidden="true"></div>
+	<div class="overlay-scanlines" aria-hidden="true"></div>
+	<!-- Cherry blossom branches draping from the top-right corner (sumi-e artwork) -->
+	<img class="sakura-tree sakura-tree--dark" src="images/sakura-dark.webp" alt="" aria-hidden="true">
+	<img class="sakura-tree sakura-tree--light" src="images/sakura-light.webp" alt="" aria-hidden="true" loading="lazy">
 
 	<div id="site">
-		<div class="switch-wrapper">
-			</a>
-			<div class="moon"></div>
-			<div class="toggle-wrapper">
-				<input type="checkbox" id="switch" />
-				<label for="switch" id="switch1">Toggle</label>
-			</div>
-			<div class="sun"></div>
-		</div>
 
-		<header class="intro">
-			<h1 class="intro_hello">
-				Hello!
-				<span id="wave" class="emoji wave-hand animated "></span>
-			</h1>
-			<h2 class="intro_tagline">
-				I'm
-				<div class="myname">Shreyansh Sawarn</div>
-				<div class="mytext">
-					<div class="content">
-						<div class=" container">
-							<ul class="list">
-								<li class="item">DevOps Engineer</li>
-								<li class="item">Azure • CI/CD • IaC</li>
-								<li class="item">SRE & Platform Ops</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<span class="intro_bio">
-					<span class="highlight">DevOps Engineer</span> with <span class="highlight">4.5+ years</span> of
-					experience designing, automating, and operating production-grade CI/CD pipelines and cloud
-					infrastructure on <span class="highlight">Azure</span>, with strong ownership of reliability,
-					security, and platform automation.
-					<span id="emojiwavehand" class="emoji technologist"></span>
-				</span>
-			</h2>
-			<h3 class="intro_contact">
-				<span>Get in touch</span>
-				<span class="emoji pointer"></span>
-				<span id="emailme">
-					<a href="mailto:shreyanshsawarn88@gmail.com" target="_blank"
-						class="highlight-link">shreyanshsawarn88@gmail.com</a>
-				</span>
-			</h3>
+		<!-- ============ HERO ============ -->
+		<header class="hero">
+			<p class="hero_kicker"><span class="jp">こんにちは</span> // HELLO WORLD_</p>
+
+			<h1 class="hero_name glitch" data-text="Shreyansh Sawarn">Shreyansh Sawarn</h1>
+
+			<div class="hero_roles">
+				<span class="hero_prompt">&gt;</span>
+				<span id="typewriter"></span><span class="cursor">▮</span>
+			</div>
+
+			<p class="hero_bio">
+				<span class="highlight">DevOps Engineer</span> with <span class="highlight">4.5+ years</span> of
+				experience designing, automating, and operating production-grade CI/CD pipelines and cloud
+				infrastructure on <span class="highlight">Azure</span> — with strong ownership of reliability,
+				security, and platform automation.
+			</p>
+
+			<div class="hero_actions">
+				<a class="btn btn--primary" href="mailto:shreyanshsawarn88@gmail.com">
+					<span class="jp-small">連絡</span> Get in touch
+				</a>
+				<a class="btn btn--ghost" href="images/Shreyansh_Sawarn_Resume.pdf" target="_blank" rel="noopener">
+					<span class="status-dot" aria-hidden="true"></span> View Resume
+				</a>
+			</div>
+
+			<div class="hero_scroll" aria-hidden="true">
+				<span class="jp-small">下</span>
+				<span class="hero_scroll_line"></span>
+			</div>
 		</header>
 
-		<section class="section background">
-			<div class="section_title">Background</div>
+		<!-- ============ BACKGROUND ============ -->
+		<section class="section reveal" id="background">
+			<h2 class="section_title"><span class="section_jp">経歴</span>Background<span class="section_num">01</span></h2>
 			<div class="section_content">
 				<p>
 					I'm a DevOps Engineer with 4.5+ years of experience designing and operating production-grade CI/CD
@@ -72,259 +90,263 @@
 					secure platform automation, and environment-specific deployments under real-world enterprise
 					constraints.
 				</p>
-
 				<p>
 					My work spans CI/CD for API gateways, frontend and backend platforms, infrastructure automation
 					using Terraform and Terragrunt, custom Docker containerization and Kubernetes-based deployments on
 					AKS, and SRE-aligned reliability and vulnerability remediation initiatives.
 				</p>
-
-
-				<a class="status" href="images/Shreyansh_Sawarn_Resume.pdf" target="_blank">
-					<div class="status_light">
-						<div class="status_light_ring"></div>
-						<div class="status_light_led"></div>
-					</div>
-					<div class="status_message">
-						View my Resume
-					</div>
-				</a>
 			</div>
 		</section>
 
-		<section class="section skills" data-aos="slide-up">
-			<div class="section_title">skills</div>
+		<!-- ============ SKILLS ============ -->
+		<section class="section reveal" id="skills">
+			<h2 class="section_title"><span class="section_jp">スキル</span>Skills<span class="section_num">02</span></h2>
 			<div class="section_content">
-				<div class="skillz">
-					<div class="skillz_category">
-						<div class="skillz_category_label">
-							DevOps
-						</div>
-						<ul>
-							<li class="skillz_category_item">AZURE DEVOPS</li>
-							<li class="skillz_category_item">DOCKER</li>
-							<li class="skillz_category_item">TERRAGRUNT</li>
-							<li class="skillz_category_item">GIT</li>
-							<li class="skillz_category_item">KUBERNETES</li>
-							<li class="skillz_category_item">AZURE CLOUD SERVICES</li>
-							<li class="skillz_category_item">AZURE DATA FACTORY</li>
-							<li class="skillz_category_item">AZURE STORAGE</li>
+				<div class="skills_grid">
+					<div class="skill_card">
+						<h3 class="skill_card_label"><span class="jp-small">開発</span>DevOps</h3>
+						<ul class="taglist">
+							<li>Azure DevOps</li>
+							<li>Docker</li>
+							<li>Terragrunt</li>
+							<li>Git</li>
+							<li>Kubernetes</li>
+							<li>Azure Cloud Services</li>
+							<li>Azure Data Factory</li>
+							<li>Azure Storage</li>
 						</ul>
 					</div>
 
-					<div class="skillz_category">
-						<div class="skillz_category_label">
-							Security
-						</div>
-						<ul>
-							<li class="skillz_category_item">SONARCLOUD</li>
-							<li class="skillz_category_item">JFROG ARTIFACTORY</li>
-							<li class="skillz_category_item">JFROG XRAY</li>
-							<li class="skillz_category_item">VULNERABILITY REMEDIATION</li>
-							<li class="skillz_category_item">CVE ANALYSIS</li>
+					<div class="skill_card">
+						<h3 class="skill_card_label"><span class="jp-small">安全</span>Security</h3>
+						<ul class="taglist">
+							<li>SonarCloud</li>
+							<li>JFrog Artifactory</li>
+							<li>JFrog Xray</li>
+							<li>Vulnerability Remediation</li>
+							<li>CVE Analysis</li>
 						</ul>
 					</div>
 
-					<div class="skillz_category">
-						<div class="skillz_category_label">
-							Programming & DBMS
-						</div>
-						<ul>
-							<li class="skillz_category_item">YAML</li>
-							<li class="skillz_category_item">PYTHON</li>
-							<li class="skillz_category_item">MYSQL</li>
-							<li class="skillz_category_item">POWERSHELL</li>
-							<li class="skillz_category_item">KUSTO QUERY LANGUAGE</li>
-							<li class="skillz_category_item">LINUX</li>
+					<div class="skill_card">
+						<h3 class="skill_card_label"><span class="jp-small">言語</span>Programming &amp; DBMS</h3>
+						<ul class="taglist">
+							<li>YAML</li>
+							<li>Python</li>
+							<li>MySQL</li>
+							<li>PowerShell</li>
+							<li>Kusto Query Language</li>
+							<li>Linux</li>
 						</ul>
 					</div>
 
-					<div class="skillz_category">
-						<div class="skillz_category_label">
-							TOOLS
-						</div>
-						<ul>
-							<li class="skillz_category_item">GITHUB</li>
-							<li class="skillz_category_item">GITLAB</li>
-							<li class="skillz_category_item">AZURE APPLICATION INSIGHTS</li>
-							<li class="skillz_category_item">AZURE MONITOR</li>
-							<li class="skillz_category_item">JIRA</li>
-							<li class="skillz_category_item">CONFLUENCE</li>
-							<li class="skillz_category_item">PAGERDUTY</li>
+					<div class="skill_card">
+						<h3 class="skill_card_label"><span class="jp-small">道具</span>Tools</h3>
+						<ul class="taglist">
+							<li>GitHub</li>
+							<li>GitLab</li>
+							<li>Azure Application Insights</li>
+							<li>Azure Monitor</li>
+							<li>Jira</li>
+							<li>Confluence</li>
+							<li>PagerDuty</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
 
-
-		<section class="section experience">
-			<div class="section_title">
-				Experience
-			</div>
-
+		<!-- ============ EXPERIENCE ============ -->
+		<section class="section reveal" id="experience">
+			<h2 class="section_title"><span class="section_jp">経験</span>Experience<span class="section_num">03</span></h2>
 			<div class="section_content">
-				<div class="jobs">
-					<div class="job">
-						<div class="time-place">
-							<div class="job_company">
-								Tata Consultancy Services (TCS)
-							</div>
-							<div class="job_time">
-								May 2021 - Present
-							</div>
-						</div>
-
-						<div class="job_position">
-							<strong>DevOps Engineer (Systems Engineer)</strong><br><br>
-
-							• Designed and implemented end-to-end Azure DevOps CI/CD pipelines for Kong
-							Gateway and frontend services, enabling environment-specific validation and
-							deployments using decK, RBAC-secured Admin APIs, and VM-based environment agents.<br><br>
-
-							• Automated production-grade Redis Enterprise operations, including secure
-							RedisJSON configuration loading via mTLS-secured scripts and a sequential,
-							version-aware upgrade framework using Azure DevOps deployment jobs.<br><br>
-
-							• Built and supported Docker-based workloads and Kubernetes deployments on AKS,
-							supporting the transition from VM-based deployments to containerized architectures
-							with 100% on-time delivery.<br><br>
-
-							• Automated Azure IaaS provisioning using Terraform and Terragrunt, ensuring DRY,
-							scalable, multi-environment infrastructure.<br><br>
-
-							• Drove SRE-aligned reliability improvements by integrating Azure Application
-							Insights via Terraform, reducing unplanned downtime by ~50% and improving SLI
-							from 97.2% to 98.55%.<br><br>
-
-							• Owned VM-level vulnerability remediation across environments, resolving critical
-							CVEs identified via Qualys, CrowdStrike, and Nucleus while preserving application
-							stability.
-						</div>
+				<!-- CI/CD pipeline: lights up on reveal -->
+				<div class="pipeline" aria-hidden="true">
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">commit</span>
+					</div>
+					<span class="pipe"></span>
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">build</span>
+					</div>
+					<span class="pipe"></span>
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">test</span>
+					</div>
+					<span class="pipe"></span>
+					<div class="stage">
+						<span class="stage_dot"></span>
+						<span class="stage_label">deploy</span>
 					</div>
 				</div>
-			</div>
-		</section>
 
-		<section class="section featured-projects">
-			<div class="section_title">Recent Projects</div>
-			<div class="section_content">
-				<details>
-					<summary>Terraform Azure Infrastructure Automation</summary>
-					<div class="project_name">
-						<a href="https://github.com/shreyansh-sawarn/tf-azure" target="_blank"> </a>
-					</div>
-					<div class="featured-projects-content">
-						<p>
-							Developed and maintained Terraform configurations to automate provisioning and management of
-							Azure infrastructure. Built reusable modules and environment-specific deployments to ensure
-							consistency, scalability, and DRY infrastructure practices.
-						</p>
-
-					</div>
-					<div class="project_used">
-						<span class="project_used_item">TERRAFORM</span>
-						<span class="project_used_item">MICROSOFT AZURE</span>
-					</div>
-					<div class="project_links">
-						<a href="https://github.com/shreyansh-sawarn/tf-azure" target="_blank">
-							<img src="images/github.png" alt="image">
-						</a>
-					</div>
-				</details>
-			</div>
-		</section>
-
-		<section class="section other-projects">
-			<div class="section_title">Other Projects</div>
-			<div class="section_content">
-
-				<details>
-					<summary>Face, Eye and Smile Detector</summary>
-					<div class="project_name">
-						<a href="https://github.com/shreyansh-sawarn/Face-Eyes-Smile-Detector" target="_blank"> </a>
-					</div>
-					<div class="featured-projects-content">
-						<p>A python based project to detect a user's face, eyes and smile.<br>
-							Users can detect face, eyes and smile using their webcam and screenshot using 's'.</p>
-
-					</div>
-					<div class="project_used">
-						<span class="project_used_item">PYTHON</span>
-						<span class="project_used_item">HAAR CASCADE</span>
-						<span class="project_used_item">OPENCV</span>
-						<span class="project_used_item">WEBCAM</span>
-					</div>
-					<div class="project_links">
-						<a href="https://github.com/shreyansh-sawarn/Face-Eyes-Smile-Detector" target="_blank">
-							<img src="images/github.png" alt="image">
-						</a>
-					</div>
-				</details>
-
-				<details>
-					<summary>Library Management System</summary>
-					<div class="project">
-						<p>A simple website used for managing a library and its users.</p>
-						<div class="project_used">
-							<span class="project_used_item">HTML</span>
-							<span class="project_used_item">PHP</span>
-							<span class="project_used_item">CSS</span>
-							<span class="project_used_item">JAVASCRIPT</span>
-							<span class="project_used_item">SQL</span>
-							<span class="project_used_item">HACK</span>
+				<article class="job">
+					<div class="job_header">
+						<div>
+							<h3 class="job_company">Tata Consultancy Services (TCS)</h3>
+							<p class="job_position">DevOps Engineer (Systems Engineer)</p>
 						</div>
-						<div class="project_links">
-							<a href="https://github.com/shreyansh-sawarn/Library-Management-System" target="_blank">
-								<img src="images/github.png" alt="image">
+						<p class="job_time">May 2021 — Present</p>
+					</div>
+					<ul class="job_points">
+						<li>Designed and implemented end-to-end Azure DevOps CI/CD pipelines for Kong Gateway and
+							frontend services, enabling environment-specific validation and deployments using decK,
+							RBAC-secured Admin APIs, and VM-based environment agents.</li>
+						<li>Automated production-grade Redis Enterprise operations, including secure RedisJSON
+							configuration loading via mTLS-secured scripts and a sequential, version-aware upgrade
+							framework using Azure DevOps deployment jobs.</li>
+						<li>Built and supported Docker-based workloads and Kubernetes deployments on AKS, supporting
+							the transition from VM-based deployments to containerized architectures with 100% on-time
+							delivery.</li>
+						<li>Automated Azure IaaS provisioning using Terraform and Terragrunt, ensuring DRY, scalable,
+							multi-environment infrastructure.</li>
+						<li>Drove SRE-aligned reliability improvements by integrating Azure Application Insights via
+							Terraform, reducing unplanned downtime by ~50% and improving SLI from 97.2% to 98.55%.</li>
+						<li>Owned VM-level vulnerability remediation across environments, resolving critical CVEs
+							identified via Qualys, CrowdStrike, and Nucleus while preserving application stability.</li>
+					</ul>
+				</article>
+			</div>
+		</section>
+
+		<!-- ============ PROJECTS ============ -->
+		<section class="section reveal" id="projects">
+			<h2 class="section_title"><span class="section_jp">作品</span>Projects<span class="section_num">04</span></h2>
+			<div class="section_content">
+				<div class="projects_grid">
+
+					<article class="project_card project_card--featured">
+						<div class="project_card_top">
+							<span class="project_folder" aria-hidden="true">▰▰</span>
+							<a class="project_gh" href="https://github.com/shreyansh-sawarn/tf-azure" target="_blank"
+								rel="noopener" title="View on GitHub">
+								<img src="images/github.svg" alt="GitHub">
 							</a>
 						</div>
-					</div>
-				</details>
+						<h3 class="project_name">Terraform Azure Infrastructure Automation</h3>
+						<p class="project_desc">
+							Terraform configurations to automate provisioning and management of Azure infrastructure.
+							Reusable modules and environment-specific deployments for consistent, scalable, DRY
+							infrastructure.
+						</p>
+						<div class="taglist taglist--project">
+							<span>Terraform</span>
+							<span>Microsoft Azure</span>
+						</div>
+					</article>
+
+					<article class="project_card">
+						<div class="project_card_top">
+							<span class="project_folder" aria-hidden="true">▰▰</span>
+							<a class="project_gh" href="https://github.com/shreyansh-sawarn/Face-Eyes-Smile-Detector"
+								target="_blank" rel="noopener" title="View on GitHub">
+								<img src="images/github.svg" alt="GitHub">
+							</a>
+						</div>
+						<h3 class="project_name">Face, Eye &amp; Smile Detector</h3>
+						<p class="project_desc">
+							A Python project that detects a user's face, eyes and smile through the webcam, with
+							screenshot capture on demand.
+						</p>
+						<div class="taglist taglist--project">
+							<span>Python</span>
+							<span>Haar Cascade</span>
+							<span>OpenCV</span>
+						</div>
+					</article>
+
+					<article class="project_card">
+						<div class="project_card_top">
+							<span class="project_folder" aria-hidden="true">▰▰</span>
+							<a class="project_gh" href="https://github.com/shreyansh-sawarn/Library-Management-System"
+								target="_blank" rel="noopener" title="View on GitHub">
+								<img src="images/github.svg" alt="GitHub">
+							</a>
+						</div>
+						<h3 class="project_name">Library Management System</h3>
+						<p class="project_desc">
+							A simple website for managing a library and its users — catalog, members and lending.
+						</p>
+						<div class="taglist taglist--project">
+							<span>HTML</span>
+							<span>PHP</span>
+							<span>CSS</span>
+							<span>JavaScript</span>
+							<span>SQL</span>
+						</div>
+					</article>
+
+				</div>
 			</div>
 		</section>
 
-		<footer class="footer">
-			<div class="footer_copyright">
-				<div class="top">
-					<span>
-						Designed &amp; Developed by
-					</span>
-				</div>
-				<div class="bottom">
-					<span>
-						Shreyansh Sawarn
-					</span>
-					<img class="emoji" src="images/rockon.png" alt="emoji">
-					<span>
-						10/05/2026
-					</span>
-				</div>
-			</div>
+		<!-- ============ FOOTER ============ -->
+		<footer class="footer reveal">
+			<p class="footer_jp" aria-hidden="true">ありがとうございました</p>
 			<div class="footer_links">
-				<a href="mailto:shreyanshsawarn88@gmail.com" target="_blank" title="Email">
-					<img src="images/email.svg" alt="email">
+				<a href="mailto:shreyanshsawarn88@gmail.com" title="Email">
+					<img src="images/email.svg" alt="Email">
 				</a>
-				<a href="https://www.linkedin.com/in/shreyanshsawarn/" target="_blank" title="LinkedIn">
-					<img src="images/linkedin.svg" alt="linkedin">
+				<a href="https://www.linkedin.com/in/shreyanshsawarn/" target="_blank" rel="noopener" title="LinkedIn">
+					<img src="images/linkedin.svg" alt="LinkedIn">
 				</a>
-				<a href="https://github.com/shreyansh-sawarn" target="_blank" title="GitHub">
-					<img src="images/github.svg" alt="Github">
+				<a href="https://github.com/shreyansh-sawarn" target="_blank" rel="noopener" title="GitHub">
+					<img src="images/github.svg" alt="GitHub">
 				</a>
-
-				<a href="https://twitter.com/SawarnShreyansh" target="_blank" title="X">
+				<a href="https://twitter.com/SawarnShreyansh" target="_blank" rel="noopener" title="X">
 					<img src="images/x.svg" alt="X">
 				</a>
-
-
 			</div>
+			<p class="footer_copy">Designed &amp; developed by <span class="highlight">Shreyansh Sawarn</span></p>
+			<p class="footer_sub">桜 × サイバー — build, break, deploy, repeat.</p>
 		</footer>
-		<button id="top-button" style="display: inline-block;">
-			<img src="images/finger-up-emoji-clipart-21.png" alt="">
-		</button>
+	</div>
 
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script type="text/javascript" src="main.js"></script>
+	<!-- katakana digital rain, left edge -->
+	<canvas id="rain" aria-hidden="true"></canvas>
+
+	<button id="theme-toggle" role="switch" aria-checked="false" title="Toggle light/dark"
+		aria-label="Toggle light and dark theme">
+		<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+			stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+		</svg>
+		<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+			stroke-linecap="round" aria-hidden="true">
+			<circle cx="12" cy="12" r="4" />
+			<path
+				d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+		</svg>
+		<span class="toggle-knob" aria-hidden="true"></span>
+	</button>
+	<!-- terminal easter egg -->
+	<button id="term-button" title="Open terminal (`)" aria-label="Open terminal">&gt;_</button>
+	<div id="terminal" role="dialog" aria-label="Portfolio terminal" hidden>
+		<div class="term_bar">
+			<span class="term_dot term_dot--r"></span>
+			<span class="term_dot term_dot--y"></span>
+			<span class="term_dot term_dot--g"></span>
+			<span class="term_title">shreyansh@portfolio:~</span>
+			<button class="term_close" id="term-close" aria-label="Close terminal">×</button>
+		</div>
+		<div class="term_out" id="term-out"></div>
+		<div class="term_in">
+			<span class="term_prompt">$</span>
+			<input id="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+		</div>
+	</div>
+
+	<button id="top-button" title="Back to top" aria-label="Back to top">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+			stroke-linejoin="round" aria-hidden="true">
+			<path d="M12 19V5M5 12l7-7 7 7" />
+		</svg>
+	</button>
+
+	<script src="main.js"></script>
 </body>
 
 </html>
