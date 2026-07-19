@@ -672,6 +672,42 @@ body.light .sakura-tree--light {
 	margin-bottom: 0;
 }
 
+/* ---------- impact stats ---------- */
+.stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 24px;
+	margin-top: 48px;
+	max-width: 720px;
+}
+
+.stat::before {
+	content: "";
+	display: block;
+	width: 38px;
+	height: 2px;
+	background: linear-gradient(90deg, var(--sakura), var(--neon));
+	box-shadow: 0 0 8px rgba(255, 122, 178, 0.5);
+	margin-bottom: 14px;
+}
+
+.stat_value {
+	display: block;
+	font-family: var(--mono);
+	font-size: clamp(1.7rem, 4vw, 2.4rem);
+	color: var(--sakura);
+	text-shadow: var(--glow-pink);
+	line-height: 1.1;
+	margin-bottom: 6px;
+	font-variant-numeric: tabular-nums;
+}
+
+.stat_label {
+	font-size: 0.82rem;
+	color: var(--text-dim);
+	letter-spacing: 0.03em;
+}
+
 /* ---------- skills ---------- */
 .skills_grid {
 	display: grid;

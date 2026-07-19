@@ -103,8 +103,6 @@ A **Certifications section is scaffolded but commented out** in `index.html`
 - The Deploy button (`#deploy-btn`) replays the pipeline; on scroll reveal
   only the commit dot lights (`.pipeline.armed` vs `.pipeline.run`).
 
-### Discussed but not built (candidate next steps)
-
-- Impact metrics strip: animated counters for ~50% downtime reduction,
-  SLI 97.2→98.55%, 100% on-time delivery — surfaced from the Experience
-  bullets into the Background section.
+- Impact stats strip (`.stats` in Background): counters animate on each
+  reveal via `runCounters()`; values live in `data-count` attributes — keep
+  them in sync with the Experience bullets and resume.

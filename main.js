@@ -190,6 +190,29 @@
 		})();
 	}
 
+	/* ---------- animated stat counters ---------- */
+	function runCounters(scope) {
+		scope.querySelectorAll('.stat_value').forEach(function (el) {
+			var target = parseFloat(el.getAttribute('data-count'));
+			var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+			var pre = el.getAttribute('data-prefix') || '';
+			var suf = el.getAttribute('data-suffix') || '';
+			if (reducedMotion || isNaN(target)) {
+				el.textContent = pre + target.toFixed(dec) + suf;
+				return;
+			}
+			var t0 = null;
+			function step(ts) {
+				if (!t0) t0 = ts;
+				var p = Math.min((ts - t0) / 1400, 1);
+				var e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+				el.textContent = pre + (target * e).toFixed(dec) + suf;
+				if (p < 1) requestAnimationFrame(step);
+			}
+			requestAnimationFrame(step);
+		});
+	}
+
 	/* ---------- scroll reveal ---------- */
 	var revealEls = document.querySelectorAll('.reveal');
 
@@ -203,6 +226,10 @@
 				if (pl) {
 					pl.classList.toggle('armed', entry.isIntersecting);
 					if (!entry.isIntersecting && window.__resetPipeline) window.__resetPipeline();
+				}
+				// stat counters count up on each reveal
+				if (entry.isIntersecting && entry.target.querySelector('.stats')) {
+					runCounters(entry.target);
 				}
 			});
 		}, { threshold: 0.12 });
