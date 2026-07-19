@@ -755,12 +755,20 @@ body.light .sakura-tree--light {
 }
 
 /* ---------- CI/CD pipeline ---------- */
+.pipeline_row {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	flex-wrap: wrap;
+	margin-bottom: 32px;
+}
+
 .pipeline {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	font-family: var(--mono);
-	margin-bottom: 32px;
+	flex: 1 1 300px;
 	max-width: 560px;
 }
 
@@ -824,8 +832,9 @@ body.light .sakura-tree--light {
 	display: flex;
 	align-items: center;
 	gap: 18px;
-	margin-bottom: 32px;
 	font-family: var(--mono);
+	/* dots sit above their labels; nudge up so the button centers on the dot line */
+	margin-bottom: 14px;
 }
 
 #deploy-btn {

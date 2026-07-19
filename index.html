@@ -163,7 +163,8 @@
 		<section class="section reveal" id="experience">
 			<h2 class="section_title"><span class="section_jp">経験</span>Experience<span class="section_num">03</span></h2>
 			<div class="section_content">
-				<!-- CI/CD pipeline: lights up on reveal -->
+				<!-- CI/CD pipeline: commit glows on reveal, full run via Deploy -->
+				<div class="pipeline_row">
 				<div class="pipeline" aria-hidden="true">
 					<div class="stage">
 						<span class="stage_dot"></span>
@@ -189,6 +190,7 @@
 				<div class="pipeline_controls">
 					<button id="deploy-btn" type="button">▶ deploy</button>
 					<span id="deploy-status" class="deploy_status" role="status"></span>
+				</div>
 				</div>
 
 				<article class="job">
