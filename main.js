@@ -78,14 +78,19 @@
 	if (canvas && !reducedMotion) {
 		var ctx = canvas.getContext('2d');
 		var petals = [];
-		var PETAL_COUNT = Math.min(40, Math.floor(window.innerWidth / 32));
+
+		function targetCount() {
+			return Math.min(40, Math.floor(window.innerWidth / 32));
+		}
 
 		function resize() {
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
+			// adjust density to the new size
+			var want = targetCount();
+			while (petals.length > want) petals.pop();
+			while (petals.length < want) petals.push(makePetal(true));
 		}
-		resize();
-		window.addEventListener('resize', resize);
 
 		function makePetal(initial) {
 			return {
@@ -103,7 +108,8 @@
 			};
 		}
 
-		for (var i = 0; i < PETAL_COUNT; i++) petals.push(makePetal(true));
+		resize();
+		window.addEventListener('resize', resize);
 
 		function drawPetal(p) {
 			ctx.save();
@@ -245,7 +251,8 @@
 				var fade = Math.max(0, 1 - y / (window.innerHeight * 1.1));
 				trees.forEach(function (el) {
 					el.style.translate = '0 ' + shift.toFixed(1) + 'px';
-					el.style.opacity = fade.toFixed(2);
+					// via CSS var so the mobile media query's 0.3 cap still applies
+					el.style.setProperty('--fade', fade.toFixed(2));
 				});
 				ticking = false;
 			});

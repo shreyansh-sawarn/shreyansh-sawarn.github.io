@@ -192,6 +192,7 @@ body {
 	animation: tree-enter 1.4s cubic-bezier(0.22, 1, 0.36, 1) backwards,
 		tree-sway 11s ease-in-out 1.4s infinite;
 	will-change: translate;
+	opacity: var(--fade, 1);
 }
 
 @keyframes tree-enter {
@@ -238,7 +239,7 @@ body.light .sakura-tree--light {
 	.sakura-tree {
 		width: 420px;
 		right: -120px;
-		opacity: 0.3;
+		opacity: calc(var(--fade, 1) * 0.3);
 	}
 }
 
