@@ -65,6 +65,9 @@ body.light {
 
 html {
 	scroll-behavior: smooth;
+	/* hidden = fallback; clip = real fix for mobile layout-viewport widening */
+	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 body {
@@ -76,6 +79,7 @@ body {
 	font-family: var(--sans);
 	line-height: 1.7;
 	overflow-x: hidden;
+	overflow-x: clip;
 	transition: background 0.4s ease, color 0.4s ease;
 }
 
@@ -178,6 +182,17 @@ body {
 }
 
 /* ---------- cherry blossom branches (top-right frame) ---------- */
+.tree-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100svh;
+	overflow: clip;
+	pointer-events: none;
+	z-index: 1;
+}
+
 .sakura-tree {
 	position: absolute;
 	top: 0;
