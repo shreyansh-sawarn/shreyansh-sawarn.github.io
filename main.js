@@ -170,6 +170,12 @@
 			entries.forEach(function (entry) {
 				// toggle so reveal animations replay on every scroll in/out
 				entry.target.classList.toggle('in', entry.isIntersecting);
+				// on reveal only the commit dot lights; full run is Deploy-button-only
+				var pl = entry.target.querySelector('.pipeline');
+				if (pl) {
+					pl.classList.toggle('armed', entry.isIntersecting);
+					if (!entry.isIntersecting && window.__resetPipeline) window.__resetPipeline();
+				}
 			});
 		}, { threshold: 0.12 });
 
@@ -259,6 +265,57 @@
 		}, { passive: true });
 	}
 
+	/* ---------- fake deploy button ---------- */
+	(function () {
+		var btn = document.getElementById('deploy-btn');
+		var status = document.getElementById('deploy-status');
+		var pipeline = document.querySelector('.pipeline');
+		if (!btn || !status || !pipeline) return;
+
+		var timers = [];
+
+		// scrolling away resets the pipeline to its armed (commit-only) state
+		window.__resetPipeline = function () {
+			timers.forEach(clearTimeout);
+			timers = [];
+			pipeline.classList.remove('run');
+			status.textContent = '';
+			status.classList.remove('ok');
+			btn.disabled = false;
+		};
+
+		btn.addEventListener('click', function () {
+			// reset any previous run
+			timers.forEach(clearTimeout);
+			timers = [];
+			btn.disabled = true;
+			status.classList.remove('ok');
+
+			// restart the stage animations
+			pipeline.classList.remove('run');
+			void pipeline.offsetWidth; // force reflow so animations replay
+			pipeline.classList.add('run');
+
+			// status text follows the stages
+			var steps = [
+				[200, 'committing...'],
+				[1150, 'building...'],
+				[2100, 'running tests...'],
+				[3050, 'deploying to production...'],
+				[3600, '✓ Deployment Successful']
+			];
+			steps.forEach(function (s) {
+				timers.push(setTimeout(function () {
+					status.textContent = s[1];
+					if (s[1].indexOf('✓') === 0) {
+						status.classList.add('ok');
+						btn.disabled = false;
+					}
+				}, s[0]));
+			});
+		});
+	})();
+
 	/* ---------- live GitHub stats on project cards ---------- */
 	(function () {
 		var cards = document.querySelectorAll('.project_card');
@@ -333,7 +390,7 @@
 
 		var COMMANDS = {
 			help: function () {
-				print('<span class="t-dim">available commands:</span>\n  <span class="t-cmd">about</span>      who am i\n  <span class="t-cmd">skills</span>     core toolbox\n  <span class="t-cmd">projects</span>   things i built\n  <span class="t-cmd">resume</span>     open my resume\n  <span class="t-cmd">contact</span>    reach me\n  <span class="t-cmd">github</span>     open my github\n  <span class="t-cmd">linkedin</span>   open my linkedin\n  <span class="t-cmd">theme</span>      toggle light/dark\n  <span class="t-cmd">clear</span>      clear terminal\n  <span class="t-cmd">exit</span>       close terminal');
+				print('<span class="t-dim">available commands:</span>\n  <span class="t-cmd">about</span>      who am i\n  <span class="t-cmd">skills</span>     core toolbox\n  <span class="t-cmd">projects</span>   things i built\n  <span class="t-cmd">resume</span>     open my resume\n  <span class="t-cmd">deploy</span>     run the pipeline\n  <span class="t-cmd">contact</span>    reach me\n  <span class="t-cmd">github</span>     open my github\n  <span class="t-cmd">linkedin</span>   open my linkedin\n  <span class="t-cmd">theme</span>      toggle light/dark\n  <span class="t-cmd">clear</span>      clear terminal\n  <span class="t-cmd">exit</span>       close terminal');
 			},
 			about: function () {
 				print('<span class="t-pink">Shreyansh Sawarn</span> — DevOps Engineer, 4.5+ years.\nAzure CI/CD, Terraform, Kubernetes, SRE. Reliability is a feature.');
@@ -362,6 +419,19 @@
 			theme: function () {
 				document.getElementById('theme-toggle').click();
 				print('theme toggled.');
+			},
+			deploy: function () {
+				var lines = [
+					['<span class="t-dim">pipeline started...</span>', 100],
+					['commit   <span class="t-cmd">✓</span>', 500],
+					['build    <span class="t-cmd">✓</span>', 1000],
+					['test     <span class="t-cmd">✓</span>', 1500],
+					['deploy   <span class="t-cmd">✓</span>', 2000],
+					['<span class="t-pink">Deployment Successful ✦</span>', 2400]
+				];
+				lines.forEach(function (l) {
+					setTimeout(function () { print(l[0]); }, l[1]);
+				});
 			},
 			whoami: function () { print('shreyansh — devops engineer'); },
 			uptime: function () { print('4.5+ years in production, 0 unrecoverable incidents'); },
