@@ -20,10 +20,11 @@ redesign; don't reintroduce it.
   `localStorage('theme')`.
 - All theme-dependent colors go through CSS variables defined in `:root` and
   overridden in `body.light`. Never hardcode a theme color in a component rule.
-- The hero artwork ships as two files (`images/sakura-dark.webp`,
-  `images/sakura-light.webp`) swapped via CSS `display`, because the image
-  processing differs per theme (dark variant has lavender-recolored ink and
-  boosted petals).
+- The hero artwork ships per theme (dark variant has lavender-recolored ink
+  and boosted petals) and per size: `sakura-{dark,light}-{800,1200}.webp`.
+  `<picture>` forces the 800w file on ≤900px viewports regardless of DPR
+  (decorative art doesn't need retina); preload links mirror the same media
+  split. Theme swap is via CSS `display` on the `img` elements.
 
 ## Hard-won gotchas (do not regress)
 
