@@ -191,7 +191,6 @@ body {
 	   parallax via `translate` without the two fighting */
 	animation: tree-enter 1.4s cubic-bezier(0.22, 1, 0.36, 1) backwards,
 		tree-sway 11s ease-in-out 1.4s infinite;
-	will-change: translate;
 	opacity: var(--fade, 1);
 }
 
@@ -1069,9 +1068,13 @@ body.light .sakura-tree--light {
 	pointer-events: auto;
 }
 
+#top-button {
+	transform: translateZ(0);
+}
+
 #top-button:hover {
 	box-shadow: var(--glow-cyan);
-	transform: translateY(-3px);
+	transform: translateY(-3px) translateZ(0);
 }
 
 /* ============================================================
@@ -1119,6 +1122,12 @@ body.light #rain {
 	border: 1px solid var(--panel-border);
 	border-radius: 999px;
 	cursor: pointer;
+	/* stays readable over the blossom artwork behind it */
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 122, 178, 0.12);
+	/* own compositing layer: avoids fixed-element paint dropouts */
+	transform: translateZ(0);
 	transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
@@ -1202,9 +1211,13 @@ body.light .toggle-knob {
 	clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
+#term-button {
+	transform: translateZ(0);
+}
+
 #term-button:hover {
 	box-shadow: var(--glow-pink);
-	transform: translateY(-3px);
+	transform: translateY(-3px) translateZ(0);
 }
 
 #terminal {
