@@ -984,6 +984,61 @@ body.light .sakura-tree--light {
 	margin-bottom: 0;
 }
 
+/* ---------- certifications (section is scaffolded in HTML, currently commented out) ---------- */
+.certs_grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 20px;
+}
+
+.cert_card {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	background: var(--panel);
+	border: 1px solid var(--panel-border);
+	border-radius: 6px;
+	padding: 20px 22px;
+	backdrop-filter: blur(6px);
+	transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+	clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+
+.cert_card:hover {
+	transform: translateY(-4px);
+	border-color: var(--neon);
+	box-shadow: 0 0 24px rgba(34, 230, 247, 0.16);
+}
+
+.cert_badge {
+	font-family: var(--mono);
+	font-size: 0.85rem;
+	letter-spacing: 0.05em;
+	color: var(--neon);
+	border: 1px solid var(--neon-dim);
+	border-radius: 4px;
+	padding: 9px 13px;
+	white-space: nowrap;
+	text-shadow: var(--glow-cyan);
+}
+
+.cert_name {
+	color: var(--text);
+	font-size: 0.95rem;
+	line-height: 1.4;
+}
+
+.cert_meta {
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	color: var(--text-dim);
+	margin-top: 4px;
+}
+
+.cert_meta a {
+	color: var(--neon);
+}
+
 /* ---------- projects ---------- */
 .projects_grid {
 	display: grid;

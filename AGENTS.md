@@ -74,3 +74,37 @@ redesign; don't reintroduce it.
 
 Keep copy in sync with `images/Shreyansh_Sawarn_Resume.pdf`. Japanese accents
 (section kanji, footer) are decorative — keep them tasteful and minimal.
+
+### Certifications section — pending activation
+
+A **Certifications section is scaffolded but commented out** in `index.html`
+(between Experience and Projects). Shreyansh is currently pursuing certs
+(as of July 2026, targeting Azure/Terraform). When he says he's certified:
+
+1. Uncomment the section in `index.html`.
+2. Replace template entries with the real cert names, exam codes, years and
+   credential/verification URLs (drop the templates he didn't earn).
+3. Renumber: Certifications takes `section_num` 04; Projects becomes 05.
+4. CSS (`.certs_grid`, `.cert_card`) is already live — no style work needed.
+
+## Other pages & extras
+
+- `404.html` — themed error page, reuses `style.css` + `main.js` (both are
+  defensive about missing elements, so this works). Served automatically by
+  GitHub Pages. Uses absolute paths (`/style.css`) — keep it that way.
+- Favicons: `favicon.svg` (glitch blossom, primary), `favicon-mono.svg` (S
+  monogram), `favicon-term.svg` (terminal prompt). main.js cycles them per
+  visit via `localStorage('favi')`; PNG entry remains as fallback. 404.html
+  uses the primary statically.
+- JSON-LD `Person` schema lives in the `<head>` of `index.html` — update
+  `worksFor` / `knowsAbout` when the resume changes.
+- Terminal has a hidden `hanami` command (petal storm via `window.__hanami`),
+  deliberately not listed in `help`.
+- The Deploy button (`#deploy-btn`) replays the pipeline; on scroll reveal
+  only the commit dot lights (`.pipeline.armed` vs `.pipeline.run`).
+
+### Discussed but not built (candidate next steps)
+
+- Impact metrics strip: animated counters for ~50% downtime reduction,
+  SLI 97.2→98.55%, 100% on-time delivery — surfaced from the Experience
+  bullets into the Background section.

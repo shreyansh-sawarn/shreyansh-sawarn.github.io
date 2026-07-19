@@ -6,6 +6,16 @@
 
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+	/* ---------- favicon cycles on each visit: blossom → S → terminal ---------- */
+	(function () {
+		var icons = ['images/favicon.svg', 'images/favicon-mono.svg', 'images/favicon-term.svg'];
+		var idx = 0;
+		try { idx = (parseInt(localStorage.getItem('favi'), 10) || 0) % icons.length; } catch (e) { /* ignore */ }
+		var link = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+		if (link && idx > 0) link.href = icons[idx];
+		try { localStorage.setItem('favi', String((idx + 1) % icons.length)); } catch (e) { /* ignore */ }
+	})();
+
 	/* ---------- theme toggle (dark by default) ---------- */
 	var themeBtn = document.getElementById('theme-toggle');
 
@@ -110,6 +120,24 @@
 
 		resize();
 		window.addEventListener('resize', resize);
+
+		/* hanami easter egg: temporary full-screen petal storm */
+		var storming = false;
+		window.__hanami = function () {
+			if (storming) return;
+			storming = true;
+			for (var i = 0; i < 130; i++) {
+				var p = makePetal(false);
+				p.y = -Math.random() * canvas.height;      // stagger entry from above
+				p.speedY *= 2 + Math.random() * 1.5;       // fall faster
+				p.size *= 1.15;
+				petals.push(p);
+			}
+			setTimeout(function () {
+				petals.length = targetCount();             // storm subsides
+				storming = false;
+			}, 8000);
+		};
 
 		function drawPetal(p) {
 			ctx.save();
@@ -419,6 +447,15 @@
 			theme: function () {
 				document.getElementById('theme-toggle').click();
 				print('theme toggled.');
+			},
+			hanami: function () {
+				// 花見 — not listed in help; a secret for the curious
+				if (window.__hanami) {
+					print('<span class="t-pink">花見 — enjoy the blossoms.</span>');
+					window.__hanami();
+				} else {
+					print('<span class="t-dim">the blossoms are resting (reduced motion is on).</span>');
+				}
 			},
 			deploy: function () {
 				var lines = [

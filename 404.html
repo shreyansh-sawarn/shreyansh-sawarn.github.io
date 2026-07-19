@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>404 — Shreyansh Sawarn</title>
+	<meta name="robots" content="noindex">
+	<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Serif+JP:wght@600&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="/style.css">
+	<style>
+		.notfound {
+			min-height: 100svh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			position: relative;
+			z-index: 3;
+			padding: 24px;
+		}
+
+		.notfound .hero_name {
+			font-size: clamp(4rem, 18vw, 9rem);
+			margin-bottom: 8px;
+		}
+
+		.notfound_jp {
+			font-family: var(--serif-jp);
+			color: var(--sakura);
+			text-shadow: var(--glow-pink);
+			font-size: 1.05rem;
+			letter-spacing: 0.2em;
+			margin-bottom: 14px;
+		}
+
+		.notfound_msg {
+			color: var(--text-dim);
+			max-width: 440px;
+			margin-bottom: 36px;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="sakura" aria-hidden="true"></canvas>
+	<div class="overlay-grid" aria-hidden="true"></div>
+	<div class="overlay-scanlines" aria-hidden="true"></div>
+
+	<main class="notfound">
+		<p class="hero_kicker">// ERROR_</p>
+		<h1 class="hero_name glitch" data-text="404">404</h1>
+		<p class="notfound_jp">この道は桜で塞がれています</p>
+		<p class="notfound_msg">
+			This path is blocked by fallen sakura. The page you're looking for
+			doesn't exist — or was deployed to another environment.
+		</p>
+		<a class="btn btn--primary" href="/">cd ~/home</a>
+	</main>
+
+	<script src="/main.js"></script>
+</body>
+
+</html>
