@@ -263,11 +263,18 @@
 		var rainHidden = false;
 		document.addEventListener('visibilitychange', function () { rainHidden = document.hidden; });
 
+		// cache the CSS-hidden state instead of querying layout every frame
+		var rainMq = window.matchMedia('(max-width: 1100px)');
+		var rainOff = rainMq.matches;
+		var mqHandler = function (e) { rainOff = e.matches; };
+		if (rainMq.addEventListener) rainMq.addEventListener('change', mqHandler);
+		else rainMq.addListener(mqHandler);
+
 		var last = 0;
 		(function rainLoop(ts) {
 			requestAnimationFrame(rainLoop);
 			// skip when tab is hidden, when CSS hides the canvas (mobile), or between frames
-			if (rainHidden || rain.clientWidth === 0 || ts - last < 55) return; // ~18fps
+			if (rainHidden || rainOff || ts - last < 55) return; // ~18fps
 			last = ts;
 
 			// fade previous frame (keeps canvas transparent)
